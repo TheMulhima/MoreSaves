@@ -1,4 +1,5 @@
-﻿using Modding;
+﻿using HKMirror;
+using Modding;
 using UnityEngine.UI;
 
 namespace MoreSaves
@@ -32,8 +33,8 @@ namespace MoreSaves
                         self.ChangeSaveFileState(SaveSlotButton.SaveFileStates.Corrupted);
                     }
                     else
-                    {
-                        ReflectionHelper.SetField(self,"saveStats",saveStats);
+                    { 
+                        self.Reflect().saveStats = saveStats;
                         self.ChangeSaveFileState(SaveSlotButton.SaveFileStates.LoadedStats);
                     }
                 });

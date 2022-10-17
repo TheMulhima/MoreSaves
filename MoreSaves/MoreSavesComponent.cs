@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using GlobalEnums;
+using HKMirror;
 using InControl;
 using Modding;
 using MonoMod.RuntimeDetour;
@@ -141,7 +142,7 @@ namespace MoreSaves
 
             if (binding.Name != "LeftButton") return orig(self, action, binding);
 
-            ReflectionHelper.GetField<MappableKey, UIButtonSkins>(self, "uibs").FinishedListeningForKey();
+            self.Reflect().uibs.FinishedListeningForKey();
             action.StopListeningForBinding();
             self.AbortRebind();
             return false;
