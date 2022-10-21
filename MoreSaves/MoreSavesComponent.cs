@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using GlobalEnums;
-using HKMirror;
+using HKMirror.Hooks.OnHooks;
+using HKMirror.Reflection;
 using InControl;
 using Modding;
 using MonoMod.RuntimeDetour;
@@ -89,7 +90,7 @@ namespace MoreSaves
             On.GameManager.LoadGame += GameManager_LoadGame;
 
             //make MenuChanger work
-            ModdedSavePath = new Hook(ReflectionHelper.GetMethodInfo(typeof(GameManager), "ModdedSavePath", false), EditModdedSavePath);
+            OnGameManager.WithOrig.ModdedSavePath += EditModdedSavePath;
         }
 
         private void ModHooks_SavegameClearHook(int _)
@@ -338,9 +339,9 @@ namespace MoreSaves
         }
 
         // Makes MenuChanger work properly
-        private string EditModdedSavePath(Func<int, string> orig, int saveSlot)
+        private string EditModdedSavePath(Func<int, string> orig, int slot)
         {
-            return orig(GetNewSaveSlot(saveSlot));
+            return orig(GetNewSaveSlot(slot));
         }
 
         private void UpdatePageLabel()
