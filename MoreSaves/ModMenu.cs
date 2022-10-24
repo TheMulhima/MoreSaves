@@ -547,6 +547,7 @@ namespace MoreSaves
             }
             else
             {
+                AllPDFields.Clear();
                 EditSavesMenu = CreateMenuBuilder("Edit Saves")
                     .AddControlButton("Back", new Vector2(-200f, -64f), GoToConfirmMenu, GoToConfirmMenu)
                     .AddControlButton("Apply", new Vector2(200f, -64f), GoToConfirmMenu, SaveAndExitEditSaveMenu)
@@ -569,6 +570,7 @@ namespace MoreSaves
                         RegularGridLayout.CreateVerticalLayout(105f),
                         AddSaveFileContent
                     )).Build();
+                
                 
                 AllPDFields.ForEach(go =>
                 {
