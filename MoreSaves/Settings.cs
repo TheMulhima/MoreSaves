@@ -22,20 +22,31 @@ namespace MoreSaves
     
     public class KeyBinds : PlayerActionSet
     {
-        public PlayerAction NextPage;
-        public PlayerAction PreviousPage;
+        public PlayerAction NextPage_Keyboard;
+        public PlayerAction PreviousPage_Keyboard;
+        public PlayerAction NextPage_Controller;
+        public PlayerAction PreviousPage_Controller;
+        
+        public bool NextPageIsPressed => NextPage_Keyboard.IsPressed || NextPage_Controller.IsPressed;
+        public bool NextPageWasPressed => NextPage_Keyboard.WasPressed || NextPage_Controller.WasPressed;
+        public bool PreviousPageIsPressed => PreviousPage_Keyboard.IsPressed || PreviousPage_Controller.IsPressed;
+        public bool PreviousPageWasPressed => PreviousPage_Keyboard.WasPressed || PreviousPage_Controller.WasPressed;
 
         public KeyBinds()
         {
-            NextPage = CreatePlayerAction("NextPage");
-            PreviousPage = CreatePlayerAction("PreviousPage");
+            NextPage_Keyboard = CreatePlayerAction("NextPage_Keyboard");
+            PreviousPage_Keyboard = CreatePlayerAction("PreviousPage_Keyboard");
+            NextPage_Controller = CreatePlayerAction("NextPage_Controller");
+            PreviousPage_Controller = CreatePlayerAction("PreviousPage_Controller");
             DefaultBinds();
         }
 
         private void DefaultBinds()
         {
-            NextPage.AddDefaultBinding(Key.RightBracket);
-            PreviousPage.AddDefaultBinding(Key.LeftBracket);
+            NextPage_Keyboard.AddDefaultBinding(Key.RightBracket);
+            PreviousPage_Keyboard.AddDefaultBinding(Key.LeftBracket);
+            NextPage_Controller.AddDefaultBinding(InputControlType.RightTrigger);
+            PreviousPage_Controller.AddDefaultBinding(InputControlType.LeftTrigger);
         }
     }
 }

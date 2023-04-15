@@ -126,8 +126,8 @@ namespace MoreSaves
             {
                 new MenuRow(new List<Element>()
                 { 
-                    new KeyBind("Go to Next Page", MoreSaves.settings.keybinds.NextPage),
-                    new KeyBind("Go to Previous Page", MoreSaves.settings.keybinds.PreviousPage),
+                    Blueprints.KeyAndButtonBind("Go to Next Page", MoreSaves.settings.keybinds.NextPage_Keyboard, MoreSaves.settings.keybinds.NextPage_Controller),
+                    Blueprints.KeyAndButtonBind("Go to Previous Page", MoreSaves.settings.keybinds.PreviousPage_Keyboard, MoreSaves.settings.keybinds.PreviousPage_Controller),
                 }, "PageTurnKeybinds"),
                 
                 Blueprints.NavigateToMenu("Edit a save","Pressing this will open a menu, which allows you to edit saves", () => EditChooseMenu),

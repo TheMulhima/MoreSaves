@@ -138,8 +138,8 @@ namespace MoreSaves
         private bool IHateMouse1(On.MappableKey.orig_OnBindingFound orig, MappableKey self, PlayerAction action,
             BindingSource binding)
         {
-            if (!(action.Name == MoreSaves.settings.keybinds.NextPage.Name ||
-                  action.Name == MoreSaves.settings.keybinds.PreviousPage.Name)) return orig(self, action, binding);
+            if (!(action.Name == MoreSaves.settings.keybinds.NextPage_Keyboard.Name ||
+                  action.Name == MoreSaves.settings.keybinds.PreviousPage_Keyboard.Name)) return orig(self, action, binding);
 
             if (binding.Name != "LeftButton") return orig(self, action, binding);
 
@@ -213,16 +213,16 @@ namespace MoreSaves
                 return;
             }
             bool updateSaves = false;
-            bool holdingLeft =  MoreSaves.settings.keybinds.PreviousPage.IsPressed;
-            bool holdingRight = MoreSaves.settings.keybinds.NextPage.IsPressed;
+            bool holdingLeft =  MoreSaves.settings.keybinds.PreviousPageIsPressed;
+            bool holdingRight = MoreSaves.settings.keybinds.NextPageIsPressed;
 
-            if (MoreSaves.settings.keybinds.NextPage.WasPressed && currentTime - _lastInput > 0.05f)
+            if (MoreSaves.settings.keybinds.NextPageWasPressed && currentTime - _lastInput > 0.05f)
             {
                 _firstInput = currentTime;
                 _queueRight++;
             }
 
-            if (MoreSaves.settings.keybinds.PreviousPage.WasPressed && currentTime - _lastInput > 0.05f)
+            if (MoreSaves.settings.keybinds.PreviousPageWasPressed && currentTime - _lastInput > 0.05f)
             {
                 _firstInput = currentTime;
                 _queueLeft++;
